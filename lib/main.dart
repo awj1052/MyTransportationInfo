@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:testproject/my_listtile.dart';
 import 'package:testproject/subway/enums/daejeonsubway.dart';
 import 'package:testproject/subway/enums/subwayudtype.dart';
-import 'package:testproject/subway/subway.dart';
 import 'package:testproject/subway/widget/subwaybuilder.dart';
 
 void main() {
