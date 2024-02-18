@@ -23,7 +23,7 @@ class MyListTile extends StatelessWidget {
               width: 100,
               child: Center(child: Text(leading, style: TextStyle(fontSize: 24),),)),
           Container(
-              width: 400,
+              width: 250,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

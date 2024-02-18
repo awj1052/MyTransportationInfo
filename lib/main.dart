@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.school), label: '학교'),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: '집'),
           ],
-          selectedItemColor: Colors.grey,
+          selectedItemColor: Colors.white,
           currentIndex: _selectedIndex,
           onTap: _handleTap,
         ),
