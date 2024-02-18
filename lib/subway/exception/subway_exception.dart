@@ -1,12 +1,12 @@
 import 'package:testproject/subway/exception/subway_error_message.dart';
 
 class SubwayException implements Exception {
-  final SubwayErrorMessage message;
+  final SubwayErrorMessage subwayErrorMessage;
 
-  SubwayException(this.message);
+  SubwayException(this.subwayErrorMessage);
 
   @override
   String toString() {
-    return message.message;
+    return subwayErrorMessage.message;
   }
 }

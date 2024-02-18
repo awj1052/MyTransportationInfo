@@ -23,7 +23,7 @@ class Subway {
     }
 
     if (time.isEmpty) time.add("운행 종료");
-    return time.join(", ");
+    return time.join(",  ");
   }
 
   static Future<List> fetch(DaejeonSubway daejeonSubway, SubwayUDType subwayUDType) async {
