@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:testproject/bus/widget/busbuilder.dart';
 import 'package:testproject/bus/wrapper/busroute_no.dart';
@@ -19,39 +21,48 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late List<Widget> _itemList;
+  static const int reloadableSeconds = 10;
+  
+  List<Widget> _itemList = [];
   int _selectedIndex = 0;
   String _title = "학교 가자..";
-
-  void _handleRefresh() {
-    if (_selectedIndex == 0) {
-      _itemList = const [
-        BusBuilder(busStopId: BusStopId("BS461660"), busRouteNo: BusRouteNo(101), busStopName: "개나리아파트"),
-        SubwayBuilder(daejeonSubway: DaejeonSubway.tanbang, subwayUDType: SubwayUDType.up),
-      ];
-      _title = "학교 가자..";
-
-    } else if (_selectedIndex == 1) {
-      _itemList = const [
-        BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(101), busStopName: "충남대학교"),
-        BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(105), busStopName: "충남대학교"),
-        SubwayBuilder(daejeonSubway: DaejeonSubway.yuseongSpa, subwayUDType: SubwayUDType.down),
-      ];
-      _title = "집 가자!!";
-    }
-  }
+  DateTime _lastReload = DateTime.fromMicrosecondsSinceEpoch(0);
 
   void _handleTap(int index) {
+    _handleRefresh(index);
+  }
+
+  void _handleRefresh(int index) {
+    if (!_isReloadable(index)) return;
+    _lastReload = DateTime.now();
     setState(() {
       _selectedIndex = index;
-      _handleRefresh();
+      if (_selectedIndex == 0) {
+        _itemList = [
+          BusBuilder(busStopId: BusStopId("BS461660"), busRouteNo: BusRouteNo(101), busStopName: "개나리아파트"),
+          SubwayBuilder(daejeonSubway: DaejeonSubway.tanbang, subwayUDType: SubwayUDType.up),
+        ];
+        _title = "학교 가자..";
+
+      } else if (_selectedIndex == 1) {
+        _itemList = [
+          BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(101), busStopName: "충남대학교"),
+          BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(105), busStopName: "충남대학교"),
+          SubwayBuilder(daejeonSubway: DaejeonSubway.yuseongSpa, subwayUDType: SubwayUDType.down),
+        ];
+        _title = "집 가자!!";
+      }
     });
+  }
+
+  bool _isReloadable(int index) {
+    if (_selectedIndex != index) return true;
+    return DateTime.now().difference(_lastReload).inSeconds > reloadableSeconds;
   }
 
   @override
   Widget build(BuildContext context) {
-    _handleRefresh();
-
+    if (_itemList.isEmpty) _handleRefresh(_selectedIndex);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "뭐 타고 가지..",
@@ -62,7 +73,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: SafeArea(
           child: RefreshIndicator(
-            onRefresh: () async { _handleRefresh(); },
+            onRefresh: () async {
+                _handleRefresh(_selectedIndex);
+              },
             child: ListView(
               children: _itemList,
             ),
