@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testproject/subway/subway.dart';
 
 class MyListTile extends StatelessWidget {
   final String leading, title, subtitle;
@@ -7,6 +8,10 @@ class MyListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _fontSize = 24.0;
+    if (leading == Subway.leading) {
+      _fontSize = 22.0;
+    }
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.black),
@@ -20,10 +25,10 @@ class MyListTile extends StatelessWidget {
         children: [
           Container(
               margin: const EdgeInsets.only(right: 10),
-              width: 100,
-              child: Center(child: Text(leading, style: TextStyle(fontSize: 24),),)),
-          Container(
-              width: 250,
+              width: 80,
+              child: Center(child: Text(leading, style: TextStyle(fontSize: _fontSize)))),
+          SizedBox(
+              width: 270,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

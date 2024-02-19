@@ -25,7 +25,7 @@ class _SubwayBuilderState extends State<SubwayBuilder> {
         future: Subway.getTime(daejeonSubway, subwayUDType),
         builder: (context, snapshot) {
           if (snapshot.hasData == false) {
-            return MyListTile(leading: "지하철", title: daejeonSubway.name, subtitle: "");
+            return MyListTile(leading: Subway.leading, title: daejeonSubway.name, subtitle: "");
           } else if (snapshot.hasError) {
             return Padding(
                 padding: const EdgeInsets.all(8),
@@ -35,7 +35,7 @@ class _SubwayBuilderState extends State<SubwayBuilder> {
                 ),
             );
           }
-          return MyListTile(leading: "지하철", title: daejeonSubway.name, subtitle: snapshot.data.toString());
+          return MyListTile(leading: Subway.leading, title: daejeonSubway.name, subtitle: snapshot.data.toString());
         },
     );
   }

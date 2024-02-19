@@ -11,9 +11,10 @@ import 'enums/subwayudtype.dart';
 class Subway {
 
   static const String baseUrl = "https://pts.map.naver.com/end-subway/api/realtime/subways?station=";
+  static const String leading = "지하철";
 
   static Future<String> getTime(DaejeonSubway daejeonSubway, SubwayUDType subwayUDType) async {
-    List<dynamic> resData = await fetch(daejeonSubway, subwayUDType);
+    List<dynamic> resData = await _fetch(daejeonSubway, subwayUDType);
 
     var time = [];
     for(int i=0; i<resData[0][subwayUDType.key].length; i++) {
@@ -26,7 +27,7 @@ class Subway {
     return time.join(",  ");
   }
 
-  static Future<List> fetch(DaejeonSubway daejeonSubway, SubwayUDType subwayUDType) async {
+  static Future<List> _fetch(DaejeonSubway daejeonSubway, SubwayUDType subwayUDType) async {
     final url = Uri.parse(baseUrl + daejeonSubway.station.toString());
     final response = await http.get(url);
 
