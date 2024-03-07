@@ -1,6 +1,6 @@
 enum SubwayUDType {
-  up(key: "upWays", number: 1),
-  down(key: "downWays", number: 0);
+  up(key: "upWays", number: 0),
+  down(key: "downWays", number: 1);
 
   final String key;
   final int number;
