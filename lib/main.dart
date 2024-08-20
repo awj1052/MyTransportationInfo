@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       if (_selectedIndex == 0) {
         _itemList = [
           BusBuilder(busStopId: BusStopId("BS461660"), busRouteNo: BusRouteNo(101), busStopName: "개나리아파트"),
-          SubwayBuilder(daejeonSubway: DaejeonSubway.tanbang, subwayUDType: SubwayUDType.up),
+          SubwayBuilder(daejeonSubway: DaejeonSubway.tanbang, subwayUDType: SubwayUDType.down),
           BusBuilder(busStopId: BusStopId("BS461292"), busRouteNo: BusRouteNo(108), busStopName: "월평역"),
         ];
         _title = "학교 가자..";
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         _itemList = [
           BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(101), busStopName: "충남대학교"),
           BusBuilder(busStopId: BusStopId("BS460564"), busRouteNo: BusRouteNo(105), busStopName: "충남대학교"),
-          SubwayBuilder(daejeonSubway: DaejeonSubway.yuseongSpa, subwayUDType: SubwayUDType.down),
+          SubwayBuilder(daejeonSubway: DaejeonSubway.yuseongSpa, subwayUDType: SubwayUDType.up),
         ];
         _title = "집 가자!!";
       }
